@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "anilist-node": "^1.13.1"
+  }
+}
