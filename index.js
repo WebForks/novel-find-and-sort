@@ -10,49 +10,49 @@ function renameSubdirectoriesToAnilistID(directoryPath) {
             console.error(err);
             return;
         }
-    })
 
-    for (const file of files) {
-        //construct the full path to the subdirectory
-        const filePath = `${directoryPath}/${file}`;
-        // Get the stats of the subdirectory
-        fs.stat(filePath, (err, stats) => {
-            // If there's an error, log it to the console
-            if (err) {
-                console.error(err);
-                return;
-            }
-            
-            // If the stats indicate that the file is a directory
-            if (stats.isDirectory()) {
-                let myFilter = {
-                    format: "NOVEL"
+        for (const file of files) {
+            //construct the full path to the subdirectory
+            const filePath = `${directoryPath}/${file}`;
+            // Get the stats of the subdirectory
+            fs.stat(filePath, (err, stats) => {
+                // If there's an error, log it to the console
+                if (err) {
+                    console.error(err);
+                    return;
                 }
-
-                // Search for the subdirectory name on Anilist
-                Anilist.searchEntry.manga(file,myFilter).then(results => {
-                    //if theres a match
-                    if (results.media.length > 0){
-                        //Get the first match
-                        const anime = results.media[0]
-                        //constructs the new path with the id as the new name
-                        const newFilePath = `${directoryPath}/${anime.id}`;
-                        //Rename the subdirectory
-                        fs.rename(filePath,newFilePath,(err) =>{
-                            //if theres an error, log it to the console
-                            if (err) {
-                                console.error(err)
-                            }
-                        })
+                
+                // If the stats indicate that the file is a directory
+                if (stats.isDirectory()) {
+                    let myFilter = {
+                        format: "NOVEL"
                     }
-                })
-            }
-            else {
-                console.log(`No match found for subdirectory: ${file}`);
-            }
-        })
 
-    }
+                    // Search for the subdirectory name on Anilist
+                    Anilist.searchEntry.manga(file,myFilter).then(results => {
+                        //if theres a match
+                        if (results.media.length > 0){
+                            //Get the first match
+                            const anime = results.media[0]
+                            //constructs the new path with the id as the new name
+                            const newFilePath = `${directoryPath}/${anime.id}`;
+                            //Rename the subdirectory
+                            fs.rename(filePath,newFilePath,(err) =>{
+                                //if theres an error, log it to the console
+                                if (err) {
+                                    console.error(err)
+                                }
+                            })
+                        }
+                    })
+                }
+                else {
+                    console.log(`No match found for subdirectory: ${file}`);
+                }
+            })
+
+        }
+    })
 }
 
 renameSubdirectoriesToAnilistID('path/to/directory');
