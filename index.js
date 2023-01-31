@@ -27,7 +27,8 @@ function renameSubdirectoriesToAnilistID(directoryPath) {
                     let myFilter = {
                         format: "NOVEL"
                     }
-
+                    
+                    setTimeout(() => {},5000);
                     // Search for the subdirectory name on Anilist
                     Anilist.searchEntry.manga(file,myFilter).then(results => {
                         //if theres a match
@@ -44,10 +45,10 @@ function renameSubdirectoriesToAnilistID(directoryPath) {
                                 }
                             })
                         }
+                        else {
+                            console.log(`No match found for subdirectory: ${file}`);
+                        }
                     })
-                }
-                else {
-                    console.log(`No match found for subdirectory: ${file}`);
                 }
             })
 
@@ -55,4 +56,4 @@ function renameSubdirectoriesToAnilistID(directoryPath) {
     })
 }
 
-renameSubdirectoriesToAnilistID('path/to/directory');
+renameSubdirectoriesToAnilistID('C:\\Users\\Ethan Liu\\Desktop\\repos\\novel-find-and-sort\\Aniex LN\\LN');

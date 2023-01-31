@@ -5,6 +5,6 @@ let myFilter = {
     format: "NOVEL"
 }
 
-Anilist.searchEntry.manga("86",myFilter).then(results => {
+Anilist.searchEntry.manga("a most unlikely hero",myFilter).then(results => {
     console.log(results);
 })
