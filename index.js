@@ -28,7 +28,7 @@ function renameSubdirectoriesToAnilistID(directoryPath) {
                         format: "NOVEL"
                     }
                     
-                    setTimeout(() => {},5000);
+                    
                     // Search for the subdirectory name on Anilist
                     Anilist.searchEntry.manga(file,myFilter).then(results => {
                         //if theres a match
@@ -47,6 +47,7 @@ function renameSubdirectoriesToAnilistID(directoryPath) {
                         }
                         else {
                             console.log(`No match found for subdirectory: ${file}`);
+                            setTimeout(() => {},10000);
                         }
                     })
                 }

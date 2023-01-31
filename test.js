@@ -6,5 +6,5 @@ let myFilter = {
 }
 
 Anilist.searchEntry.manga("a most unlikely hero",myFilter).then(results => {
-    console.log(results);
+    console.log(results.media.length);
 })
