@@ -1,6 +1,7 @@
 const fs = require('fs');
 const anilist = require('anilist-node');
 const Anilist = new anilist();
+//https://www.katsurin.com/docs/anilist-node/index.html
 
 function renameSubdirectoriesToAnilistID(directoryPath) {
     // Read the subdirectories in the directory
@@ -37,6 +38,8 @@ function renameSubdirectoriesToAnilistID(directoryPath) {
                             const anime = results.media[0]
                             //constructs the new path with the id as the new name
                             const newFilePath = `${directoryPath}/${anime.id}`;
+                            console.log(newFilePath)
+                            setTimeout(() => {},10000)
                             //Rename the subdirectory
                             fs.rename(filePath,newFilePath,(err) =>{
                                 //if theres an error, log it to the console
